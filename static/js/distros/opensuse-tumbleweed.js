@@ -1,0 +1,1 @@
+(function () { window.DISTRO_PAGE_CONFIG = Object.assign({}, window.DISTRO_PAGE_CONFIG || {}, { id: "opensuse-tumbleweed", name: "openSUSE Tumbleweed", packageManager: "zypper", initSystem: "systemd" }); })();

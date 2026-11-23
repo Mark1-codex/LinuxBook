@@ -1,0 +1,1 @@
+(function () { window.DISTRO_PAGE_CONFIG = Object.assign({}, window.DISTRO_PAGE_CONFIG || {}, { id: "gentoo", name: "Gentoo Linux", packageManager: "emerge (Portage)", initSystem: "OpenRC / systemd" }); })();

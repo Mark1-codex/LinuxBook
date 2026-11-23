@@ -1,0 +1,1 @@
+(function () { window.DISTRO_PAGE_CONFIG = Object.assign({}, window.DISTRO_PAGE_CONFIG || {}, { id: "fedora-silverblue", name: "Fedora Silverblue", packageManager: "rpm-ostree / flatpak", initSystem: "systemd" }); })();

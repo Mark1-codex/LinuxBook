@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linuxbook — Linux Installation Guides</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="Linuxbook logo" width="32" height="32">
+        <span class="brand-title">Linuxbook<span class="brand-cursor" aria-hidden="true">_</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#distros-section">Distributions ({{ distro_count }})</a>
+        <a href="#family-matrix">Families</a>
+        <a href="#workflow-guide">How it works</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">20 Linux distributions</span>
+      <h1>Linux installation guides - for newbies and pros</h1>
+      <p>Pick a distribution below to read how to put its ISO onto a USB drive using balenaEtcher or Rufus, start up your computer from the USB stick, click through the installer, and keep personal notes saved in SQLite.</p>
+      <div class="hero-stats">
+        <div class="stat-pill"><strong>20</strong> distribution guides</div>
+        <div class="stat-pill"><strong>balenaEtcher &amp; Rufus</strong> friendly steps</div>
+        <div class="stat-pill"><strong>SQLite notes</strong> saved per distro</div>
+      </div>
+    </section>
+
+    <section id="distros-section" class="controls-panel">
+      <div class="controls-row">
+        <input id="search-input" class="search-input" type="search" placeholder="Search by name, beginner/advanced, apt, pacman, dnf..." aria-label="Search distributions">
+        <select id="level-select" class="select-control" aria-label="Filter by difficulty level">
+          <option value="all">All levels</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+      <div class="filter-bar" id="family-filters" role="group" aria-label="Filter by distribution family">
+        <button type="button" class="filter-btn active" data-family="all">All (20)</button>
+        <button type="button" class="filter-btn" data-family="debian">Debian / Ubuntu</button>
+        <button type="button" class="filter-btn" data-family="arch">Arch</button>
+        <button type="button" class="filter-btn" data-family="fedora">Fedora</button>
+        <button type="button" class="filter-btn" data-family="opensuse">openSUSE</button>
+        <button type="button" class="filter-btn" data-family="independent">Independent</button>
+      </div>
+      <div id="results-meta" class="results-meta">Showing {{ distro_count }} of {{ distro_count }} distributions</div>
+      <div id="distro-grid" class="distro-grid"></div>
+    </section>
+
+    <section id="family-matrix" class="info-section">
+      <h2>Distribution families</h2>
+      <p>Different Linux distributions share common roots and update tools. If you are new to Linux, Debian/Ubuntu or Fedora family guides are usually the easiest place to start.</p>
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Family</th>
+            <th>Package Tool</th>
+            <th>Init System</th>
+            <th>Good Fit For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Debian / Ubuntu</strong></td>
+            <td><code>apt</code></td>
+            <td><code>systemd</code></td>
+            <td>Everyday desktops, laptops, lots of guides and help online</td>
+          </tr>
+          <tr>
+            <td><strong>Arch</strong></td>
+            <td><code>pacman</code></td>
+            <td><code>systemd</code></td>
+            <td>People who want newer packages and hands-on control</td>
+          </tr>
+          <tr>
+            <td><strong>Fedora</strong></td>
+            <td><code>dnf</code> / <code>rpm-ostree</code></td>
+            <td><code>systemd</code></td>
+            <td>Modern desktop features and regular updates</td>
+          </tr>
+          <tr>
+            <td><strong>openSUSE</strong></td>
+            <td><code>zypper</code></td>
+            <td><code>systemd</code></td>
+            <td>System snapshots and YaST/Agama setup tools</td>
+          </tr>
+          <tr>
+            <td><strong>Independent</strong></td>
+            <td><code>xbps</code>, <code>apk</code>, <code>emerge</code>, <code>nix</code></td>
+            <td><code>runit</code>, <code>OpenRC</code>, <code>systemd</code></td>
+            <td>Specialized setups, alternative init systems, or declarative configs</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="workflow-guide" class="info-section">
+      <h2>Before you start</h2>
+      <p>You do not need to know any Linux commands to install Linux. Download the ISO file, flash it onto a spare USB drive using balenaEtcher or Rufus, restart your computer into the USB stick, and follow the installer screens.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Linuxbook · Flask + SQLite</span>
+      <span>20 distribution guides</span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/distros.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

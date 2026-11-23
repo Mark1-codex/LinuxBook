@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ distro.name }} Guide — Linuxbook</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/distros/opensuse-tumbleweed.css') }}">
+</head>
+<body>
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <div class="brand-group">
+        <a class="back-link" href="/">All distros</a>
+        <span class="spec-val">{{ distro.name }}</span>
+      </div>
+      <nav class="guide-nav" aria-label="Guide sections">
+        <a href="#overview">Overview</a>
+        <a href="#prep">USB &amp; Boot</a>
+        <a href="#install-flow">Install steps</a>
+        <a href="#post-install">After install</a>
+        <a href="#troubleshooting">Troubleshooting</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="overview" class="guide-hero">
+      <div class="panel-header">
+        <h2>Installing openSUSE Tumbleweed</h2>
+        <span class="badge">{{ distro.level }}</span>
+      </div>
+      <p>{{ distro.summary }}</p>
+      <div class="spec-grid">
+        <div class="spec-box"><div class="spec-label">Installer / method</div><div class="spec-val">{{ distro.installer }}</div></div>
+        <div class="spec-box"><div class="spec-label">Package tool</div><div class="spec-val">{{ distro.pkg }}</div></div>
+        <div class="spec-box"><div class="spec-label">Init system</div><div class="spec-val">{{ distro.init }}</div></div>
+        <div class="spec-box"><div class="spec-label">Kernel &amp; filesystems</div><div class="spec-val">{{ distro.kernel }} · {{ distro.filesystems }}</div></div>
+      </div>
+    </section>
+
+    <div class="guide-layout">
+      <div>
+        <section id="prep" class="doc-section">
+          <h2>1. Flash the ISO to USB &amp; boot</h2>
+          <p>Download the official <strong>openSUSE Tumbleweed</strong> image from <a href="https://get.opensuse.org/tumbleweed/" target="_blank" rel="noopener noreferrer">https://get.opensuse.org/tumbleweed/</a> (reference: <a href="https://doc.opensuse.org/" target="_blank" rel="noopener noreferrer">official docs</a>). Back up anything on your USB stick first because flashing overwrites it.</p>
+
+          <h3>balenaEtcher (Windows, macOS, Linux)</h3>
+          <ol class="tool-steps">
+            <li>Open <strong>balenaEtcher</strong>, click <strong>Flash from file</strong>, and pick the downloaded <strong>openSUSE Tumbleweed</strong> ISO.</li>
+            <li>Click <strong>Select target</strong> and choose your USB flash drive (verify the size/name so you do not pick an external backup drive).</li>
+            <li>Click <strong>Flash!</strong> and wait for flashing and verification to complete.</li>
+          </ol>
+
+          <h3>Rufus (Windows)</h3>
+          <ol class="tool-steps">
+            <li>Plug in the USB stick, open <strong>Rufus</strong>, and select your USB drive under <strong>Device</strong>.</li>
+            <li>Click <strong>SELECT</strong> next to Boot selection and choose your <strong>openSUSE Tumbleweed</strong> ISO file.</li>
+            <li>Click <strong>START</strong>, confirm the data-erase warning, and wait until Rufus shows Ready.</li>
+          </ol>
+
+          <p><strong>Booting the USB:</strong> Restart and press your boot menu key (often <code>F12</code>, <code>F11</code>, <code>F8</code>, or <code>Esc</code>), select the USB drive, and disable Fast Boot / Secure Boot / Windows Fast Startup if needed.</p>
+        </section>
+
+        <section id="install-flow" class="doc-section">
+          <h2>2. openSUSE Tumbleweed installation & zypper / Snapper commands</h2>
+          <p>Boot the Tumbleweed media and launch the installer.</p>
+
+          <ol class="tool-steps">
+            <li>Choose language, keyboard layout, and network configuration.</li>
+            <li>Review or customize disk partitioning (Btrfs with subvolumes supports Snapper snapshots), set time zone and user account, and start installation.</li>
+            <li>Reboot into Tumbleweed and verify zypper and Snapper snapshot status.</li>
+          </ol>
+
+          <h3>Commands for openSUSE Tumbleweed</h3>
+          <div class="code-block"><code>sudo zypper dup -y
+sudo snapper list
+sudo zypper lr -u</code><button type="button" class="copy-cmd-btn">Copy</button></div>
+        </section>
+
+        <section id="post-install" class="doc-section">
+          <h2>3. After installation</h2>
+          <h3>openSUSE & zypper / Snapper notes</h3>
+          <p>Use zypper dup on Tumbleweed and zypper up on Leap, and rely on Btrfs/Snapper snapshots when testing changes.</p>
+          <div class="code-block"><code>sudo zypper dup -y</code><button type="button" class="copy-cmd-btn">Copy</button></div>
+
+          <h3>Practical tips for openSUSE Tumbleweed</h3>
+          <p><strong>1.</strong> Use sudo zypper dup for Tumbleweed rolling upgrades rather than zypper up.</p>
+          <p><strong>2.</strong> Use Btrfs/Snapper snapshots if a driver or kernel update needs rolling back.</p>
+        </section>
+
+        <section id="troubleshooting" class="doc-section">
+          <h2>4. Troubleshooting</h2>
+          <p><strong>USB not booting:</strong> Re-flash the ISO with balenaEtcher or Rufus, try another USB port, and check UEFI boot priority and Secure Boot / Fast Boot settings.</p>
+          <p><strong>Installer or boot issue:</strong> Check the <a href="https://doc.opensuse.org/" target="_blank" rel="noopener noreferrer">official openSUSE Tumbleweed documentation</a> for exact partition, driver, or bootloader steps, and save your own notes in the sidebar.</p>
+        </section>
+
+        <div class="guide-pager">
+          <a class="pager-btn" href="/distro/{{ prev_distro.id }}">Previous: {{ prev_distro.name }}</a>
+          <a class="pager-btn" href="/">All {{ distro_count }} distros</a>
+          <a class="pager-btn" href="/distro/{{ next_distro.id }}">Next: {{ next_distro.name }}</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="aside-card">
+          <h3>Install checklist</h3>
+          <label class="step-check"><input type="checkbox" {% if 0 in checked_items %}checked{% endif %}> <span>Download ISO &amp; flash USB with Etcher/Rufus</span></label>
+          <label class="step-check"><input type="checkbox" {% if 1 in checked_items %}checked{% endif %}> <span>Boot from USB drive</span></label>
+          <label class="step-check"><input type="checkbox" {% if 2 in checked_items %}checked{% endif %}> <span>Complete openSUSE Tumbleweed setup &amp; partitions</span></label>
+          <label class="step-check"><input type="checkbox" {% if 3 in checked_items %}checked{% endif %}> <span>Configure bootloader / user / services</span></label>
+          <label class="step-check"><input type="checkbox" {% if 4 in checked_items %}checked{% endif %}> <span>Reboot, remove USB &amp; run initial updates</span></label>
+        </div>
+
+        <div class="aside-card">
+          <h3>Personal notes</h3>
+          <textarea id="distro-notes-input" class="notes-textarea" placeholder="Notes for openSUSE Tumbleweed (partitions, flags, boot menu key, reminders)...">{{ saved_note }}</textarea>
+          <button type="button" id="save-notes-btn" class="save-note-btn">Save notes</button>
+          <div id="note-status" class="note-status"></div>
+        </div>
+
+        <div class="aside-card">
+          <h3>Related distributions</h3>
+          <div class="related-list">
+            {% for rel in related_distros %}
+            <a class="related-link" href="/distro/{{ rel.id }}">
+              <span>{{ rel.name }}</span>
+              <span class="related-tag">{{ rel.level }}</span>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <span>Linuxbook · {{ distro.name }}</span>
+      <span><a href="/">All distributions</a> · <a href="{{ distro.docsUrl }}" target="_blank" rel="noopener noreferrer">Official docs</a></span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/distro-base.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/distros/opensuse-tumbleweed.js') }}"></script>
+</body>
+</html>

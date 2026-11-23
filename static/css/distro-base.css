@@ -1,0 +1,373 @@
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --surface-alt: #efece4;
+  --text: #1f2328;
+  --muted: #5c636a;
+  --border: #dcd7cc;
+  --distro-primary: #2c5e4f;
+  --distro-secondary: #3f7d6a;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a {
+  color: var(--distro-primary);
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--surface-alt);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.guide-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.guide-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.back-link {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.guide-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.9rem;
+}
+
+.guide-nav a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.guide-nav a:hover {
+  color: var(--text);
+}
+
+.guide-hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--distro-primary);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 22px;
+}
+
+.panel-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.badge {
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+.guide-hero p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.spec-box {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.spec-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.spec-val {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.guide-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 22px;
+  margin-top: 22px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .guide-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.doc-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.doc-section h2 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+  border-left: 3px solid var(--distro-primary);
+  padding-left: 10px;
+}
+
+.doc-section h3 {
+  margin: 18px 0 8px;
+  font-size: 1.02rem;
+}
+
+.doc-section p {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.tool-steps {
+  margin: 10px 0 14px;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.tool-steps li {
+  margin-bottom: 6px;
+}
+
+.ui-click-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.ui-click-item {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+
+.code-block {
+  position: relative;
+  background: #1f2328;
+  color: #f3f4f6;
+  border-radius: 6px;
+  padding: 12px 68px 12px 14px;
+  margin: 10px 0 14px;
+  overflow-x: auto;
+}
+
+.code-block code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  white-space: pre;
+  display: block;
+  font-size: 0.86rem;
+}
+
+.copy-cmd-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #374151;
+  color: #ffffff;
+  border: 1px solid #4b5563;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.76rem;
+  cursor: pointer;
+}
+
+.copy-cmd-btn:hover {
+  background: #4b5563;
+}
+
+.guide-pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.pager-btn {
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.pager-btn:hover {
+  background: var(--surface-alt);
+}
+
+.aside-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.aside-card h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.step-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.notes-textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.save-note-btn {
+  background: var(--distro-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.note-status {
+  margin-top: 8px;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.related-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.88rem;
+}
+
+.related-tag {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.site-footer {
+  margin-top: 28px;
+  padding: 18px 0 28px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
