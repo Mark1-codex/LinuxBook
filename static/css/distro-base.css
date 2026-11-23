@@ -24,10 +24,12 @@ body {
   line-height: 1.65;
   color: var(--text);
   background: var(--bg);
+  overflow-x: hidden;
 }
 
 a {
   color: var(--distro-primary);
+  overflow-wrap: anywhere;
 }
 
 code {
@@ -36,6 +38,7 @@ code {
   background: var(--surface-alt);
   padding: 2px 5px;
   border-radius: 4px;
+  overflow-wrap: anywhere;
 }
 
 .container {
@@ -47,7 +50,7 @@ code {
 .guide-header {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: 14px 0;
+  padding: 12px 0;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -58,13 +61,15 @@ code {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px 14px;
 }
 
 .brand-group {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  min-width: 0;
 }
 
 .back-link {
@@ -76,18 +81,20 @@ code {
   border-radius: 6px;
   background: var(--surface-alt);
   color: var(--text);
+  white-space: nowrap;
 }
 
 .guide-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 10px 16px;
   font-size: 0.9rem;
 }
 
 .guide-nav a {
   text-decoration: none;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 .guide-nav a:hover {
@@ -114,7 +121,7 @@ code {
 
 .panel-header h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2.6vw, 1.55rem);
 }
 
 .badge {
@@ -124,6 +131,7 @@ code {
   border: 1px solid var(--border);
   padding: 3px 9px;
   border-radius: 4px;
+  white-space: nowrap;
 }
 
 .guide-hero p {
@@ -133,7 +141,7 @@ code {
 
 .spec-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 12px;
   margin-top: 16px;
 }
@@ -143,6 +151,7 @@ code {
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 12px;
+  min-width: 0;
 }
 
 .spec-label {
@@ -154,6 +163,7 @@ code {
 .spec-val {
   font-weight: 600;
   font-size: 0.95rem;
+  overflow-wrap: anywhere;
 }
 
 .guide-layout {
@@ -164,10 +174,9 @@ code {
   align-items: start;
 }
 
-@media (max-width: 900px) {
-  .guide-layout {
-    grid-template-columns: 1fr;
-  }
+.guide-layout > div,
+.guide-layout > aside {
+  min-width: 0;
 }
 
 .doc-section {
@@ -180,7 +189,7 @@ code {
 
 .doc-section h2 {
   margin: 0 0 10px;
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.28rem);
   border-left: 3px solid var(--distro-primary);
   padding-left: 10px;
 }
@@ -205,23 +214,6 @@ code {
   margin-bottom: 6px;
 }
 
-.ui-click-list {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0 14px;
-  display: grid;
-  gap: 8px;
-}
-
-.ui-click-item {
-  background: var(--surface-alt);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 12px;
-  font-size: 0.93rem;
-  color: var(--muted);
-}
-
 .code-block {
   position: relative;
   background: #1f2328;
@@ -230,6 +222,7 @@ code {
   padding: 12px 68px 12px 14px;
   margin: 10px 0 14px;
   overflow-x: auto;
+  max-width: 100%;
 }
 
 .code-block code {
@@ -238,7 +231,8 @@ code {
   padding: 0;
   white-space: pre;
   display: block;
-  font-size: 0.86rem;
+  font-size: 0.85rem;
+  overflow-wrap: normal;
 }
 
 .copy-cmd-btn {
@@ -249,7 +243,7 @@ code {
   color: #ffffff;
   border: 1px solid #4b5563;
   border-radius: 4px;
-  padding: 3px 8px;
+  padding: 4px 8px;
   font-size: 0.76rem;
   cursor: pointer;
 }
@@ -299,8 +293,15 @@ code {
   gap: 8px;
   font-size: 0.9rem;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   cursor: pointer;
+}
+
+.step-check input[type="checkbox"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
 }
 
 .notes-textarea {
@@ -355,6 +356,7 @@ code {
 .related-tag {
   font-size: 0.76rem;
   color: var(--muted);
+  flex-shrink: 0;
 }
 
 .site-footer {
@@ -370,4 +372,60 @@ code {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
+}
+
+@media (max-width: 960px) {
+  .guide-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .guide-header {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .guide-hero,
+  .doc-section,
+  .aside-card {
+    padding: 16px;
+  }
+
+  .guide-hero {
+    margin-top: 14px;
+  }
+
+  .spec-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-nav {
+    gap: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .code-block {
+    padding: 12px 12px 12px 12px;
+  }
+
+  .copy-cmd-btn {
+    position: static;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .guide-pager {
+    flex-direction: column;
+  }
+
+  .pager-btn,
+  .save-note-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
