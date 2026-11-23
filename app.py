@@ -1,3 +1,4 @@
+import os
 import json
 import sqlite3
 from pathlib import Path
@@ -5,7 +6,7 @@ from flask import Flask, jsonify, render_template, request
 
 BASE = Path(__file__).resolve().parent
 DATA_FILE = BASE / "data" / "distros.json"
-DB_FILE = BASE / "data" / "linuxbook.db"
+DB_FILE = Path(os.environ.get("DB_PATH", BASE / "data" / "linuxbook.db"))
 
 app = Flask(__name__)
 
@@ -138,4 +139,5 @@ def save_checklist(distro_id):
 init_db()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
